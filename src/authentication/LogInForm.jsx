@@ -33,26 +33,26 @@ const LogInForm = () => {
 
   const handleSubmit = async () => {
     navigate("/");
-    // const encryptedData = JSON.stringify({
-    //   email: fields?.email,
-    //   password: fields?.password,
-    //   role: "admin",
-    // });
-    // await axiosInstance
-    //   .post("admin/sign-in", encryptedData)
-    //   .then((res) => {
-    //     if (res?.data?.status) {
-    //       localStorage.setItem("AdminToken", res?.data?.data?.data);
-    //       localStorage.setItem("userId", res?.data?.data?.userId);
-    //       navigate("/");
-    //       toast.success(res?.data?.message);
-    //     } else {
-    //       toast.error(res?.data?.message);
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.log("err --->", err);
-    //   });
+    const encryptedData = JSON.stringify({
+      email: fields?.email,
+      password: fields?.password,
+      role: "advertise",
+    });
+    await axiosInstance
+      .post("admin/sign-in", encryptedData)
+      .then((res) => {
+        if (res.data.status) {
+          localStorage.setItem("AdminToken", res?.data?.data?.data);
+          localStorage.setItem("userId", res?.data?.data?.userId);
+          navigate("/");
+          toast.success(res.data.message);
+        } else {
+          toast.error(res.data.message);
+        }
+      })
+      .catch((err) => {
+        console.log("err --->", err);
+      });
   };
 
   const InputBox =
