@@ -1,53 +1,46 @@
 import React, { useEffect, useState } from "react";
 import Layout1 from "../../Layouts/Layout1";
-import { useNavigate } from "react-router-dom";
-import axiosInstanceAuth from "../../apiInstances/axiosInstanceAuth";
+import axiosInstanceAuth from '../../apiInstances/axiosInstanceAuth'
 import { toast } from "react-toastify";
 
 const UserDashBoard = () => {
-  const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   GetTotalCount();
-  // }, []);
-
-  // const GetTotalCount = async () => {
-  //   await axiosInstanceAuth
-  //     .get(`admin/TotalCount`)
-  //     .then((res) => {
-  //       const mydata = res?.data;
-  //       if (res?.data?.status) {
-  //         setTotal(mydata);
-  //       } else {
-  //         toast.error(res?.data?.message);
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.log("err --->", err);
-  //     });
-  // };
-
   const [Total, setTotal] = useState({});
+
+  useEffect(() => {
+    GetTotalCount();
+  }, []);
+
+  const GetTotalCount = async () => {
+    await axiosInstanceAuth
+      .get(`/advertise/totalCount`)
+      .then((res) => {
+        if (res.data.status) {
+          setTotal(res.data.data);
+        } else {
+          toast.error(res?.data?.message);
+        }
+      })
+      .catch((err) => {
+        console.log("err --->", err);
+      });
+  };
+
   const DashboardCard = [
     {
-      title: "Total Agencies",
-      count: Total?.agency,
-      link: "/agency",
+      title: "Total Advertise",
+      count: Total.totalAdvertise,
     },
     {
-      title: "Total Agents",
-      count: Total?.agent,
-      link: "/agents",
+      title: "Total Top Listing",
+      count: Total.topListLength,
     },
     {
-      title: "Total Listings",
-      count: Total?.property,
-      link: "/listings",
+      title: "Total Between Listing",
+      count: Total.bannerListLength,
     },
     {
-      title: "Total Users",
-      count: Total?.user,
-      link: "/user",
+      title: "Total Vertical Listing",
+      count: Total.verticalListLength,
     },
   ];
 
@@ -57,7 +50,7 @@ const UserDashBoard = () => {
         <div className="container mx-auto">
           <div className="flex flex-col justify-start items-start gap-1">
             <div className="text-black font-bold text-xl md:text-2xl lg:text-3xl">
-              Welcome back,
+              Welcome back
             </div>
             {/* <div className="text-black font-extrabold text-2xl md:text-3xl lg:text-5xl">
               how can we help you today?
@@ -71,7 +64,6 @@ const UserDashBoard = () => {
                 <div
                   key={index}
                   className="h-full w-full flex flex-col justify-center items-center gap-5 bg-white rounded-2xl py-7 md:py-10 shadow-md hover:shadow-lg cursor-pointer"
-                  onClick={() => navigate(`${i?.link}`)}
                 >
                   <p className="font-bold text-[#262626] text-center text-sm md:text-base lg:text-lg mx-5">
                     {i?.title}

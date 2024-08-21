@@ -25,18 +25,18 @@ const TopHeader = () => {
               src={settings}
               alt="icon"
               className="relative py-2 px-5 cursor-pointer"
-              onClick={() => setOpenSetting(true)}
+              onClick={() => setOpenSetting(!OpenSetting)}
             />
             {OpenSetting && (
+
               <div
                 ref={ref}
-                className="absolute top-[75px] right-[40px] md:right-[100px] text-black bg-white rounded-lg shadow-lg z-50"
+                className="absolute top-[75px] right-[40px] md:right-[100px] text-black bg-white rounded-lg shadow-lg z-[99999]"
               >
                 <div
                   className="py-3 px-6 hover:bg-[#FFEAEF] cursor-pointer"
                   onClick={() => {
                     navigate(`/auth/reset-password/${userId}`);
-                    localStorage.clear();
                   }}
                 >
                   Change password

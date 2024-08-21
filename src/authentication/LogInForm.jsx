@@ -32,7 +32,6 @@ const LogInForm = () => {
   };
 
   const handleSubmit = async () => {
-    navigate("/");
     const encryptedData = JSON.stringify({
       email: fields?.email,
       password: fields?.password,
@@ -44,8 +43,8 @@ const LogInForm = () => {
         if (res.data.status) {
           localStorage.setItem("AdminToken", res?.data?.data?.data);
           localStorage.setItem("userId", res?.data?.data?.userId);
-          navigate("/");
           toast.success(res.data.message);
+          navigate("/");
         } else {
           toast.error(res.data.message);
         }

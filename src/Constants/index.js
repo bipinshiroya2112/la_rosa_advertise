@@ -12,12 +12,12 @@ const HeaderData = [
     pathname: "/",
     pagename: "Home",
   },
-  // {
-  //   icon: social,
-  //   activeIcon: home,
-  //   pathname: "/agency",
-  //   pagename: "Agencies",
-  // },
+  {
+    icon: listings,
+    activeIcon: home,
+    pathname: "/campaign",
+    pagename: "My campaign",
+  },
   // {
   //   icon: yourProfile,
   //   activeIcon: yourProfileWhite,
