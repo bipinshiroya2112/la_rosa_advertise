@@ -7,8 +7,10 @@ import uploadSingleImage from '../../uploadImage/uploadSingleImage'
 import axiosInstanceAuth from "../../apiInstances/axiosInstanceAuth";
 import { toast } from 'react-toastify'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { cityList } from './states-and-cities'
 
 const EditCampaign = () => {
+  const cityNames = cityList.map(state => state.cities).flat();
   const navigate = useNavigate();
   const getId = useLocation().pathname.split("/")?.[3];
 
@@ -73,7 +75,7 @@ const EditCampaign = () => {
         .get(`/advertise/${id}`)
         .then((res) => {
           if (res.data.status) {
-            const details = res.data.data
+            const details = res.data.data[0]
             setDetail({
               advertiseType: details.advertiseType,
               title: details.title,
@@ -109,8 +111,8 @@ const EditCampaign = () => {
       } else {
         logoImageUpload = campaignImages.companyLogoImg
       }
-      if (companyLogoRef.current.files[0] !== undefined) {
-        const upload = await uploadSingleImage(companyLogoRef);
+      if (advertisePropertyImgRef.current.files[0] !== undefined) {
+        const upload = await uploadSingleImage(advertisePropertyImgRef);
         advertiseImageUpload = upload.url
       } else {
         advertiseImageUpload = campaignImages.advertisePropertyImg
@@ -325,9 +327,13 @@ const EditCampaign = () => {
                 className="round w-full font-medium !text-[#737373] text-xs md:text-sm  outline-none border border-[#E5E5E5] rounded-[28px] py-3 px-5 mt-3"
               >
                 <option value="">Select city</option>
-                <option value="Acreage/Semi-Rural">Acreage/Semi-Rural</option>
-                <option value="Unit">Unit</option>
-                <option value="Other">Other</option>
+                {
+                  cityNames.map((item, i) => {
+                    return (
+                      <option value={item} key={i}>{item}</option>
+                    )
+                  })
+                }
               </select>
             </div>
             <div className="w-full md:w-[50%] mt-4 md:mt-6">

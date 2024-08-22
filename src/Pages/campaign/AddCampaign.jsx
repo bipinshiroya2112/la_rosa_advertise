@@ -7,8 +7,10 @@ import uploadSingleImage from '../../uploadImage/uploadSingleImage'
 import axiosInstanceAuth from "../../apiInstances/axiosInstanceAuth";
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import { cityList } from './states-and-cities'
 
 const AddCampaign = () => {
+  const cityNames = cityList.map(state => state.cities).flat();
   const navigate = useNavigate();
   const [detail, setDetail] = useState({
     advertiseType: "",
@@ -285,9 +287,13 @@ const AddCampaign = () => {
                 className="round w-full font-medium !text-[#737373] text-xs md:text-sm  outline-none border border-[#E5E5E5] rounded-[28px] py-3 px-5 mt-3"
               >
                 <option value="">Select city</option>
-                <option value="Acreage/Semi-Rural">Acreage/Semi-Rural</option>
-                <option value="Unit">Unit</option>
-                <option value="Other">Other</option>
+                {
+                  cityNames.map((item, i) => {
+                    return (
+                      <option value={item} key={i}>{item}</option>
+                    )
+                  })
+                }
               </select>
             </div>
             <div className="w-full md:w-[50%] mt-4 md:mt-6">

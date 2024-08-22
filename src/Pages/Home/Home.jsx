@@ -27,7 +27,7 @@ const UserDashBoard = () => {
 
   const DashboardCard = [
     {
-      title: "Total Advertise",
+      title: "Total Advertisement",
       count: Total.totalAdvertise || 0,
     },
     {

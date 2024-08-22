@@ -14,30 +14,35 @@ const Campaign = () => {
   const navigate = useNavigate();
   const [DeleteConfirmation, setDeleteConfirmation] = useState(false);
   const [advertiseList, setAdvertiseList] = useState([]);
+  const [searchAdvertiseList, setSearchAdvertiseList] = useState([]);
   const [selectAdvertise, setSelectAdvertise] = useState([]);
   const [IsOpenModel, setIsOpenModel] = useState(false);
 
   const SearchAgency = async (search) => {
-    console.log("🚀 ~ SearchAgency ~ search:", search);
-    // if (search) {
-    //   setAgenciesInfo(
-    //     AgenciesFilter?.filter((item) => {
-    //       const searchWords = search.toLowerCase().trim().split(" ");
-    //       const principalNameWords = item?.principal_name
-    //         ?.toLowerCase()
-    //         ?.trim()
-    //         .split(" ");
-    //       return searchWords.some((word) =>
-    //         principalNameWords && principalNameWords.some((principalWord) =>
-    //           principalWord.includes(word)
-    //         )
-    //       );
-    //     })
-    //   );
-    // } else {
-    //   setAgenciesInfo(AgenciesFilter);
-    // }
+    if (search) {
+      const searchWords = search.toLowerCase().trim().split(" ");
+      setAdvertiseList(
+        searchAdvertiseList?.filter((item) => {
+          const principalNameWords = (
+            (item?.title || "") + " " +
+            (item?.city || "") + " " +
+            (item?.advertiseType || "")
+          )
+            .toLowerCase()
+            .trim()
+            .split(" ");
+          return searchWords.every((word) =>
+            principalNameWords.some((principalWord) =>
+              principalWord.includes(word)
+            )
+          );
+        })
+      );
+    } else {
+      setAdvertiseList(searchAdvertiseList);
+    }
   };
+
 
   const ConfirmDelete = async (detail) => {
     await axiosInstanceAuth
@@ -66,6 +71,7 @@ const Campaign = () => {
       .then((res) => {
         if (res.data.status) {
           setAdvertiseList(res.data.data)
+          setSearchAdvertiseList(res.data.data)
         } else {
           toast.error(res?.data?.message);
         }
@@ -105,7 +111,7 @@ const Campaign = () => {
               >
                 <img src={add} alt="icon" className="w-3 lg:w-4" />
                 <div className="text-white font-medium text-xs md:text-sm lg:text-base">
-                  Add Advertise
+                  Add Advertisement
                 </div>
               </div>
             </div>
@@ -142,7 +148,7 @@ const Campaign = () => {
                     <img
                       src={d.advertiseImage}
                       alt="icon"
-                      className="rounded-lg h-20 object-fill"
+                      className="rounded-lg h-20 object-fill w-[60%]"
                     />
                   </div>
                   <div className="w-[20%] text-[#262626]  font-semibold text-sm lg:text-base">
