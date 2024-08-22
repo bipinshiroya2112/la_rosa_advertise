@@ -101,7 +101,7 @@ const AddCampaign = () => {
   };
   return (
     <Layout1>
-      {isLoader ? <div class="loading">Loading&#8230;</div> : null}
+      {isLoader ? <div className="loading">Loading&#8230;</div> : null}
       <div className="w-full bg-white rounded-t-xl">
         <div className="bg-[#E5002A] text-white font-semibold text-sm md:text-base lg:text-lg rounded-t-xl p-5">
           Advertise Profile

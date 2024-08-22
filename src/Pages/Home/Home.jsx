@@ -28,19 +28,19 @@ const UserDashBoard = () => {
   const DashboardCard = [
     {
       title: "Total Advertise",
-      count: Total.totalAdvertise,
+      count: Total.totalAdvertise || 0,
     },
     {
       title: "Total Top Listing",
-      count: Total.topListLength,
+      count: Total.topListLength || 0,
     },
     {
       title: "Total Between Listing",
-      count: Total.bannerListLength,
+      count: Total.bannerListLength || 0,
     },
     {
       title: "Total Vertical Listing",
-      count: Total.verticalListLength,
+      count: Total.verticalListLength || 0,
     },
   ];
 

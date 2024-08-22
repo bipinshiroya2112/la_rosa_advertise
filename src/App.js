@@ -1,5 +1,6 @@
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import {
+  ForgetPasswordFormLink,
   ForgotPasswordForm,
   LogInForm,
   ResetPasswordForm
@@ -33,7 +34,12 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/log-in" element={<LogInForm />} />
-        <Route exact path="/auth/reset-password/:id/:token" element={<ResetPasswordForm />} />
+        <Route
+          exact
+          path="/auth/reset-password/:id"
+          element={<ResetPasswordForm />}
+        />
+        <Route exact path="/auth/reset-password/:id/:token" element={<ForgetPasswordFormLink />} />
         <Route
           exact
           path="/auth/forgot-password"
