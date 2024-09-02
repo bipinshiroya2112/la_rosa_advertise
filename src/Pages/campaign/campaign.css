@@ -1,0 +1,14 @@
+.css-t3ipsp-control {
+  border: 0px solid transparent !important;
+  outline: 0px !important;
+  box-shadow: 0 0 0 1px #e5e5e5 !important;
+}
+
+.select__control--is-focused {
+  border-radius: 28px !important;
+  border-color: #e5e5e5 !important;
+}
+
+.css-19bb58m {
+  margin-left: 4px !important;
+}

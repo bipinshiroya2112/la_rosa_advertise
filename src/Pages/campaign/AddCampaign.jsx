@@ -8,14 +8,17 @@ import axiosInstanceAuth from "../../apiInstances/axiosInstanceAuth";
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 import { cityList } from './states-and-cities'
+import Select from 'react-select'
+import './campaign.css'
 
 const AddCampaign = () => {
-  const cityNames = cityList.map(state => state.cities).flat();
+  const filterNames = cityList.map(state => state.cities).flat();
+  const cityNames = filterNames.map((item) => { return { value: item, label: item } })
   const navigate = useNavigate();
   const [detail, setDetail] = useState({
     advertiseType: "",
     title: "",
-    city: "",
+    city: [],
     description: "",
     link: ""
   })
@@ -101,6 +104,15 @@ const AddCampaign = () => {
       console.error(error);
     }
   };
+
+  const handleSelectChange = (selectedOptions) => {
+    // Updating the state with the selected cities
+    setDetail((prevDetail) => ({
+      ...prevDetail,
+      city: selectedOptions ? selectedOptions.map(option => option.value) : []
+    }));
+  };
+
   return (
     <Layout1>
       {isLoader ? <div className="loading">Loading&#8230;</div> : null}
@@ -234,7 +246,7 @@ const AddCampaign = () => {
                     />
                   )}
                 </div>
-                <div className="w-[50%] grid place-content-center">
+                {/* <div className="w-[50%] grid place-content-center">
                   {campaignImages?.advertisePropertyImg ? (
                     <img
                       src={campaignImages?.advertisePropertyImg}
@@ -248,7 +260,7 @@ const AddCampaign = () => {
                       className="border-2 border-dashed border-black aspect-square w-60 rounded-full"
                     />
                   )}
-                </div>
+                </div> */}
               </div>
               <div className="w-full sm:w-[50%] text-center text-[#3B8FD4] font-medium text-sm md:text-base">
                 <label
@@ -280,7 +292,16 @@ const AddCampaign = () => {
               <div className="font-medium text-[#171717] text-xs md:text-sm ">
                 City:<span className="px-1 text-red-500">*</span>
               </div>
-              <select
+              <Select
+                defaultValue={detail.city}
+                isMulti
+                name="city"
+                options={cityNames}
+                className="round custom-select w-full font-medium !text-[#737373] text-xs md:text-sm outline-none rounded-[28px] mt-3"
+                classNamePrefix="select"
+                onChange={handleSelectChange}
+              />
+              {/* <select
                 name="city"
                 value={detail.city}
                 onChange={onInputChange}
@@ -294,7 +315,7 @@ const AddCampaign = () => {
                     )
                   })
                 }
-              </select>
+              </select> */}
             </div>
             <div className="w-full md:w-[50%] mt-4 md:mt-6">
               <div className="font-medium text-[#171717] text-xs md:text-sm ">
