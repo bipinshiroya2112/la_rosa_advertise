@@ -343,21 +343,6 @@ const EditCampaign = () => {
                 classNamePrefix="select"
                 onChange={handleSelectChange}
               />
-              {/* <select
-                name="city"
-                value={detail.city}
-                onChange={onInputChange}
-                className="round w-full font-medium !text-[#737373] text-xs md:text-sm  outline-none border border-[#E5E5E5] rounded-[28px] py-3 px-5 mt-3"
-              >
-                <option value="">Select city</option>
-                {
-                  cityNames.map((item, i) => {
-                    return (
-                      <option value={item} key={i}>{item}</option>
-                    )
-                  })
-                }
-              </select> */}
             </div>
             <div className="w-full md:w-[50%] mt-4 md:mt-6">
               <div className="font-medium text-[#171717] text-xs md:text-sm ">
