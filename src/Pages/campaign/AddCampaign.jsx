@@ -297,7 +297,7 @@ const AddCampaign = () => {
                 isMulti
                 name="city"
                 options={cityNames}
-                className="round custom-select w-full font-medium !text-[#737373] text-xs md:text-sm outline-none rounded-[28px] mt-3"
+                className="round capitalize custom-select w-full font-medium !text-[#737373] text-xs md:text-sm outline-none rounded-[28px] mt-3"
                 classNamePrefix="select"
                 onChange={handleSelectChange}
               />

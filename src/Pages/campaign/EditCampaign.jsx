@@ -127,6 +127,7 @@ const EditCampaign = () => {
         companyLogoImage: logoImageUpload,
         advertiseImage: advertiseImageUpload
       }
+
       await axiosInstanceAuth
         .post(`/advertise/update/${getId}`, data)
         .then((res) => {
@@ -338,7 +339,7 @@ const EditCampaign = () => {
                 isMulti
                 name="city"
                 options={cityNames}
-                className="round custom-select w-full font-medium !text-[#737373] text-xs md:text-sm outline-none rounded-[28px] mt-3"
+                className="round capitalize custom-select w-full font-medium !text-[#737373] text-xs md:text-sm outline-none rounded-[28px] mt-3"
                 classNamePrefix="select"
                 onChange={handleSelectChange}
               />

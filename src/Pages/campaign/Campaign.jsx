@@ -157,7 +157,7 @@ const Campaign = () => {
                   <div className="w-[20%] text-[#262626]  font-medium text-xs md:text-sm lg:text-base">
                     {d?.advertiseType}
                   </div>
-                  <div className="w-[30%] text-[#262626]  font-medium text-xs md:text-sm lg:text-base">
+                  <div className="w-[30%] text-[#262626] capitalize font-medium text-xs md:text-sm lg:text-base">
                     {d?.city.length > 1 ? d.city.join(", ") : d.city.join(", ")}
                   </div>
                   <div className="w-[10%]  flex flex-row justify-center md:justify-start items-center gap-2">
