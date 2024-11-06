@@ -130,8 +130,11 @@ const Campaign = () => {
               <div className="w-[20%] text-[#262626] font-bold text-sm lg:text-base">
                 Advertise Type
               </div>
-              <div className="w-[30%] text-[#262626] font-bold text-sm lg:text-base">
+              <div className="w-[20%] text-[#262626] font-bold text-sm lg:text-base">
                 City
+              </div>
+              <div className="w-[20%] text-[#262626] font-bold text-sm lg:text-base">
+                Status
               </div>
               <div className="w-[10%] text-[#262626] font-bold text-sm lg:text-base">
                 Action
@@ -157,8 +160,18 @@ const Campaign = () => {
                   <div className="w-[20%] text-[#262626]  font-medium text-xs md:text-sm lg:text-base">
                     {d?.advertiseType}
                   </div>
-                  <div className="w-[30%] text-[#262626] capitalize font-medium text-xs md:text-sm lg:text-base">
+                  <div className="w-[20%] text-[#262626] capitalize font-medium text-xs md:text-sm lg:text-base">
                     {d?.city.length > 1 ? d.city.join(", ") : d.city.join(", ")}
+                  </div>
+                  <div className="w-[20%]  capitalize font-medium text-xs md:text-sm lg:text-base">
+                    <span className={`inline-flex items-center px-3 py-1 rounded-full font-medium text-sm md:text-sm lg:text-base ${d.approved_status === 'approved'
+                      ? 'bg-green-100 text-green-600'
+                      : d.approved_status === 'rejected'
+                        ? 'bg-red-100 text-red-600'
+                        : 'bg-orange-100 text-orange-600'
+                      }`}>
+                      {d?.approved_status}
+                    </span>
                   </div>
                   <div className="w-[10%]  flex flex-row justify-center md:justify-start items-center gap-2">
                     <img
